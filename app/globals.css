@@ -8,8 +8,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-inter: var(--font-inter);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -20,7 +19,42 @@
 }
 
 body {
+  @apply font-inter;
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+@theme {
+  --color-sky-blue: #3662E3;
+  --color-pale-blue: #C2DAF9;
+  --color-nearly-black: #121826;
+  --color-light-gray: #E5E7EB;
+  --color-nearly-white: #F9FAFB;
+  --color-dark-blue: #212936;
+  --color-dark-gray: #4D5562;
+  --color-nearly-white-transparent: #F9FAFBCC;
+  
+  --text-base: 0.875rem;
+  --text-sm: 0.75rem;
+  --text-xs: 0.625rem;
+  
+  --animate-loading-bar: loading-bar 2.5s ease-in-out infinite;
+  @keyframes loading-bar {
+    0% {
+      transform: translateX(-100%);
+      left: 0;
+    }
+    100% {
+      transform: translateX(100%);
+      left: 100%;
+    }
+  }
+}
+
+.card {
+  @apply max-w-[800px] min-w-[480px] w-[90%] p-4 rounded-lg shadow-lg bg-white font-inter flex justify-center items-center
+}
+
+button {
+  @apply hover:cursor-pointer;
 }
