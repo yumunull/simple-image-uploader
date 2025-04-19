@@ -13,7 +13,7 @@ const ImagePreviewer: FC<Props> = ({id}) => {
     const [isImageLoaded, setIsImageLoaded] = useState(false)
     useEffect(() => {
         (async () => {
-            const res = await fetch(`http://localhost:3000/api/download/${id}`)
+            const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/download/${id}`)
             if (!res.ok) router.push(`/`)
             const url = await res.json()
             console.log(url)

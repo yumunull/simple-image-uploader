@@ -29,7 +29,7 @@ const ImageDropzone = () => {
 
         try {
             setIsUploading(true)
-            const res = await fetch("http://localhost:3000/api/upload", {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/upload`, {
                 method: "POST",
                 body: formData,
             })
