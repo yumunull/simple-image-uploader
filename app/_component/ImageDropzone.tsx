@@ -55,10 +55,10 @@ const ImageDropzone = () => {
                 <input type={`file`} accept={`image/jpeg,image/png,image/gif`} {...getInputProps()}/>
                 <Image className={`pointer-events-none`} src={`/exit.svg`} alt={`upload icon`} width={40}
                        height={40}/>
-                <span className={`mt-4 text-nearly-black text-[14px] font-medium`}>Drag & drop a file or <span
+                <span className={`mt-4 text-nearly-black text-[14px] font-medium dark:text-nearly-white`}>Drag & drop a file or <span
                     className={`text-sky-blue cursor-pointer hover:underline`}
                     onClick={handleBrowseFile}>browse files</span></span>
-                <span className={`text-dark-blue text-[12px] font-light`}>JPG, PNG or GIF - Max file size 2MB</span>
+                <span className={`text-dark-blue text-[12px] font-light dark:text-light-gray`}>JPG, PNG or GIF - Max file size 2MB</span>
             </div>
         </div>
     )

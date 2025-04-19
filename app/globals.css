@@ -51,8 +51,10 @@ body {
   }
 }
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 .card {
-  @apply max-w-[800px] min-w-[480px] w-[90%] p-4 rounded-lg shadow-lg bg-white font-inter flex justify-center items-center
+  @apply max-w-[800px] min-w-[240px] w-[90%] p-4 rounded-lg shadow-lg bg-white font-inter flex justify-center items-center dark:bg-dark-blue
 }
 
 button {

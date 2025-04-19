@@ -20,13 +20,13 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
+        <html lang="en" className={`dark`}>
         <body
             className={`${inter.variable} antialiased`}
         >
-        <div className={`flex flex-col h-screen w-screen bg-nearly-white text-[14px] text-dark-blue font-inter font-medium`}>
+        <div className={`flex flex-col h-full min-h-screen w-screen bg-nearly-white text-[14px] text-dark-blue font-inter font-medium dark:bg-nearly-black dark:text-nearly-white`}>
             <Top/>
-            <div className={`flex justify-center items-center grow flex-col`}>{children}
+            <div className={`flex justify-center items-center grow flex-col px-4 py-8`}>{children}
             </div>
         </div>
         </body>

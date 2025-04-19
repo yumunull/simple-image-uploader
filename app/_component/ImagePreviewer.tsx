@@ -1,7 +1,7 @@
 ﻿"use client"
-import React, {FC, useEffect, useRef, useState} from "react";
+import React, {FC, useEffect, useState} from "react";
 import Image from "next/image";
-import {usePathname, useRouter} from "next/navigation";
+import {useRouter} from "next/navigation";
 
 interface Props {
     id: string
@@ -20,12 +20,12 @@ const ImagePreviewer: FC<Props> = ({id}) => {
             setImageUrl(url)
         })()
     }, [id])
-    
+
     const handleCopyUrl = async () => {
         if (!imageUrl) return
         await navigator.clipboard.writeText(`${process.env.NEXT_PUBLIC_BASE_URL}/${id}`)
     }
-    
+
     const handleDownload = async () => {
         if (!imageUrl) return
         try {
@@ -47,31 +47,37 @@ const ImagePreviewer: FC<Props> = ({id}) => {
         }
 
     }
-    
+
     return (
         <>
-            <div className={`card h-[360px] mx-auto`}>
-                <div className={`w-full h-full relative rounded-[inherit] overflow-hidden flex justify-center items-center`}>
-                    {imageUrl && <Image src={imageUrl} alt={`image`} fill className={`pointer-events-none`} priority onLoad={()=>setIsImageLoaded(true)}/> }
+            <div className={`card h-[480px] mx-auto`}>
+                <div
+                    className={`w-full h-full relative rounded-[inherit] overflow-hidden flex justify-center items-center`}>
+                    {imageUrl && <Image src={imageUrl} alt={`image`} fill className={`pointer-events-none object-cover`} priority
+                                        onLoad={() => setIsImageLoaded(true)}/>}
 
-                    {(!imageUrl || !isImageLoaded) && <div>Loading</div>}
+                    {(!imageUrl || !isImageLoaded) &&
+                        <div
+                            className={`w-8 aspect-square border-4 border-light-gray border-t-sky-blue rounded-full animate-[spin_1.5s_ease-in-out_infinite]`}/>
+                    }
                 </div>
             </div>
-
-            <div className={`flex justify-center gap-x-4 mt-8`}>
-                <button
-                    onClick={handleCopyUrl}
-                    className={`bg-sky-blue px-4 py-2 rounded-md flex text-xs items-center gap-x-2 hover:cursor-pointer text-white`}>
-                    <Image src={`/Link.svg`} alt={`share icon`} width={16} height={16}/>
-                    <span>Share</span>
-                </button>
-                <button
-                    onClick={handleDownload}
-                    className={`bg-sky-blue px-4 py-2 rounded-md flex text-xs items-center gap-x-2 hover:cursor-pointer text-white`}>
-                    <Image src={`/download.svg`} alt={`download icon`} width={16} height={16}/>
-                    <span>Download</span>
-                </button>
-            </div>
+            {isImageLoaded &&
+                <div className={`flex justify-center gap-x-4 mt-8`}>
+                    <button
+                        onClick={handleCopyUrl}
+                        className={`bg-sky-blue px-4 py-2 rounded-md flex text-xs items-center gap-x-2 hover:cursor-pointer text-white hover:scale-110 duration-100 transition-all hover:shadow-sky-blue/50 hover:shadow-xl`}>
+                        <Image src={`/Link.svg`} alt={`share icon`} width={16} height={16}/>
+                        <span>Share</span>
+                    </button>
+                    <button
+                        onClick={handleDownload}
+                        className={`bg-sky-blue px-4 py-2 rounded-md flex text-xs items-center gap-x-2 hover:cursor-pointer text-white hover:scale-110 duration-100 transition-all hover:shadow-sky-blue/50 hover:shadow-xl`}>
+                        <Image src={`/download.svg`} alt={`download icon`} width={16} height={16}/>
+                        <span>Download</span>
+                    </button>
+                </div>
+            }
         </>
     )
 }
