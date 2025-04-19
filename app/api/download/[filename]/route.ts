@@ -6,13 +6,12 @@ import {getSignedUrl} from "@aws-sdk/s3-request-presigner";
 const GET = async (req: NextRequest,
                    {params}: { params: Promise<{ filename: string }> }) => {
     const {filename} = await params
-    console.log("downloaded")
     try {
         const command = new HeadObjectCommand({
             Bucket: process.env.AWS_BUCKET_NAME,
             Key: filename,
         })
-        const res = await s3Client.send(command)
+        await s3Client.send(command)
     } catch {
         return NextResponse.json("", {status: 404})
     }

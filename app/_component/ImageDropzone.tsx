@@ -1,12 +1,12 @@
 ﻿"use client"
-import React, {FC, useState} from "react";
+import React, {useState} from "react";
 import Image from "next/image";
 import {useDropzone} from "react-dropzone";
 import ImageUploading from "@/app/_component/ImageUploading";
 import {useRouter} from "next/navigation";
 
 const ImageDropzone = () => {
-    const {getRootProps, getInputProps, isDragActive, acceptedFiles, inputRef} = useDropzone({
+    const {getRootProps, getInputProps, isDragActive, inputRef} = useDropzone({
         accept: {
             "image/png": [".png"],
             "image/jpeg": [".jpg", ".jpeg"],

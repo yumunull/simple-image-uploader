@@ -1,6 +1,6 @@
 ﻿import {NextRequest, NextResponse} from "next/server";
 import {s3Client} from "@/lib/s3";
-import {ListBucketsCommand, PutObjectCommand} from "@aws-sdk/client-s3";
+import {PutObjectCommand} from "@aws-sdk/client-s3";
 import {v4 as uuidv4} from "uuid";
 
 const POST = async (req:NextRequest) => {

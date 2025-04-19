@@ -19,7 +19,7 @@ const ImagePreviewer: FC<Props> = ({id}) => {
             console.log(url)
             setImageUrl(url)
         })()
-    }, [id])
+    }, [id, router])
 
     const handleCopyUrl = async () => {
         if (!imageUrl) return
