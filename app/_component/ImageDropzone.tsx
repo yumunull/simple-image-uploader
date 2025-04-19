@@ -50,7 +50,7 @@ const ImageDropzone = () => {
     return (
         <div className={`card h-[360px]`}>
             <div {...getRootProps()}
-                 className={`rounded-[inherit] border-light-gray border-2 border-dashed flex flex-col justify-center items-center w-full h-full ${isDragActive ? `bg-light-gray` : ``}`}>
+                 className={`rounded-[inherit] border-light-gray border-2 border-dashed flex flex-col justify-center items-center w-full h-full ${isDragActive ? `bg-light-gray dark:bg-dark-gray` : ``}`}>
 
                 <input type={`file`} accept={`image/jpeg,image/png,image/gif`} {...getInputProps()}/>
                 <Image className={`pointer-events-none`} src={`/exit.svg`} alt={`upload icon`} width={40}

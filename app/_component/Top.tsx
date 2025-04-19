@@ -33,9 +33,9 @@ const Top = () => {
     
     return (
         <div className={`flex justify-between px-8 lg:px-12 xl:px-24 items-center w-full border-b-[1px] border-light-gray dark:border-dark-gray border-solid py-4`}>
-            <Image src={isDarkMode ? `/logo-dark-theme.svg` : `/logo.svg`} alt={`logo`} width={150} height={150}/>
+            <Image src={isDarkMode ? `/logo-dark-theme.svg` : `/logo.svg`} alt={`logo`} width={150} height={150} className={`pointer-events-none`}/>
             <button className={`border-light-gray rounded-xl border-[.5px] border-solid h-12 aspect-square dark:bg-dark-gray`} onClick={handleSwitchTheme}>
-                <Image src={isDarkMode ? `/Sun_fill.svg` : `/Moon_fill.svg`} alt={`dark theme icon`} width={20} height={20} className={`m-auto`}/>
+                <Image src={isDarkMode ? `/Sun_fill.svg` : `/Moon_fill.svg`} alt={`dark theme icon`} width={20} height={20} className={`m-auto pointer-events-none`}/>
             </button>
         </div>
     )
