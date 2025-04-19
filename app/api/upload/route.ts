@@ -9,16 +9,17 @@ const POST = async (req:NextRequest) => {
     if (!file) return NextResponse.json({error: "no file"},{status:400})
     const arrayBuffer  = await file.arrayBuffer()
     const buffer  = Buffer.from(arrayBuffer)
+    const filename = uuidv4()
     const command = new PutObjectCommand({
         Bucket: process.env.AWS_BUCKET_NAME,
-        Key: uuidv4(),
+        Key: filename,
         Body: buffer,
         ContentType: file.type,
     })
     
     const res = await s3Client.send(command)
     console.log(res)
-    return NextResponse.json(res);
+    return NextResponse.json(`${process.env.NEXT_PUBLIC_BASE_URL}/${filename}`)
 }
 
 export {POST}

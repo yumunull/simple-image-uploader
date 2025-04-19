@@ -10,6 +10,7 @@ interface Props {
 const ImagePreviewer: FC<Props> = ({id}) => {
     const router = useRouter()
     const [imageUrl, setImageUrl] = useState<string | null>(null)
+    const [isImageLoaded, setIsImageLoaded] = useState(false)
     useEffect(() => {
         (async () => {
             const res = await fetch(`http://localhost:3000/api/download/${id}`)
@@ -28,7 +29,6 @@ const ImagePreviewer: FC<Props> = ({id}) => {
     const handleDownload = async () => {
         if (!imageUrl) return
         try {
-            // 获取文件
             const response = await fetch(imageUrl);
             const blob = await response.blob();
 
@@ -36,14 +36,14 @@ const ImagePreviewer: FC<Props> = ({id}) => {
 
             const link = document.createElement('a');
             link.href = blobUrl;
-            link.download = id; // 设置下载的文件名
+            link.download = id;
             document.body.appendChild(link);
             link.click();
 
             document.body.removeChild(link);
             window.URL.revokeObjectURL(blobUrl);
         } catch (error) {
-            console.error('下载失败:', error);
+            console.log(error)
         }
 
     }
@@ -51,8 +51,10 @@ const ImagePreviewer: FC<Props> = ({id}) => {
     return (
         <>
             <div className={`card h-[360px] mx-auto`}>
-                <div className={`w-full h-full relative rounded-[inherit] overflow-hidden`}>
-                    {imageUrl ? <Image src={imageUrl} alt={`image`} fill className={`pointer-events-none`}/> : <div>Loading</div>}
+                <div className={`w-full h-full relative rounded-[inherit] overflow-hidden flex justify-center items-center`}>
+                    {imageUrl && <Image src={imageUrl} alt={`image`} fill className={`pointer-events-none`} priority onLoad={()=>setIsImageLoaded(true)}/> }
+
+                    {(!imageUrl || !isImageLoaded) && <div>Loading</div>}
                 </div>
             </div>
 

@@ -33,11 +33,12 @@ const ImageDropzone = () => {
                 method: "POST",
                 body: formData,
             })
-            const json = await res.json()
+            const url = await res.json()
+            router.push(`${url}`)
+            
         } finally {
             setIsUploading(false)
         }
-        router.push(`test`)
     }
 
     if (isUploading) return <ImageUploading/>
